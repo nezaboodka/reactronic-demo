@@ -1,0 +1,15 @@
+image: node:latest
+
+pages:
+  stage: deploy
+  script:
+    - mkdir public
+    - cp -r assets public
+    - npm install
+    - npm run webpack --mode=production
+
+  artifacts:
+    paths:
+      - public # GitLab pages serve from a 'public' directory
+  only:
+    - master
