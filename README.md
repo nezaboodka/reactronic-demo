@@ -10,4 +10,4 @@ are **consistently propagated** to corresponding visual components
 for (re)rendering. All that is done in automatic, seamless, and
 fine-grained way.
 
-LIVE DEMO: https://nezaboodka.github.io/reactronic-demo/
+Live demo is available here: https://nezaboodka.github.io/reactronic-demo/
