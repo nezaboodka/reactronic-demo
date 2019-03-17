@@ -59,6 +59,6 @@
   },
   "scripts": {
     "start": "node server.js",
-    "webpack": "webpack"
+    "webpack": "webpack --mode=production"
   }
 }
