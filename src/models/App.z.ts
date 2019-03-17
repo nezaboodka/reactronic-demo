@@ -12,6 +12,7 @@ export class App {
 
   @transaction @monitor(appMon)
   async fetch(): Promise<void> {
+    (window as any).gtag('event', 'fetch');
     await this.bp("fetch.0", 0);          let t = new Date();
     await this.bp("fetch.1", Anim.break); let r = await fetch(this.url);
     await this.bp("fetch.2", Anim.break); this.data = pretty(r.headers.get("content-type"), await r.text(), t);
