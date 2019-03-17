@@ -1,0 +1,3 @@
+Reactronic
+Seamless state management
+Inspired by: MobX, Nezaboodka, Excel
