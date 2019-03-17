@@ -135,10 +135,11 @@ export const ribbon = css`
   position: absolute;
   top: 0;
   right: 0;
-  color: rgba(255, 255, 255, .75) !important;
-  background-color: rgba(255, 255, 255, .1);
+  font-size: inherit;
   padding: 0 .5em;
   text-decoration: none !important;
+  color: rgba(255, 255, 255, .75) !important;
+  background-color: rgba(255, 255, 255, .1);
 
   img {
     height: 1em;
