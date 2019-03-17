@@ -29,11 +29,9 @@ export const app = css`
     border-left: .2ch solid #00B3FF;
 
     img {
-      position: relative !important;
-      height: 1.1em !important;
-      width: auto !important;
-      vertical-align: bottom !important;
-      margin-right: 0.5em !important;
+      height: 1.1em;
+      width: 1.1em;
+      vertical-align: bottom;
     }
   }
 
@@ -134,14 +132,19 @@ export const state = css`
 `;
 
 export const ribbon = css`
-  position: fixed;
-  top: 1.25em;
-  right: -6.5em;
-  background-color: white;
-  color: black !important;
-  padding: .25em 7em;
-  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: rgba(255, 255, 255, .75) !important;
+  background-color: rgba(255, 255, 255, .1);
+  padding: 0 .5em;
   text-decoration: none !important;
+
+  img {
+    height: 1em;
+    width: 1em;
+    vertical-align: top;
+  }
 `;
 
 export const code = css`

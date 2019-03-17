@@ -13,13 +13,14 @@ export function Main(p: {tran?: Transaction, app: App}): JSX.Element {
     let tran: Transaction | undefined = ops.length > 0 ? ops[0].tran : undefined;
     return (
       <div className={css.app}>
-        {/* <a className={css.ribbon} href="https://github.com/nezaboodka/reactronic#readme">
-          <img style={{height: "1em", width: "1em", verticalAlign: "top", marginRight: "0.25em"}} src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"/>
-          GitHub
-        </a> */}
         <div className={css.body}>
           <div className={css.summary}>
-            <h1>Reactronic Live Demo</h1>
+            <h1>
+              Reactronic Live Demo
+              <a className={css.ribbon} href="https://github.com/nezaboodka/reactronic-demo">
+                @ GitHub
+              </a>
+            </h1>
             <a href="https://github.com/Nezaboodka/reactronic#readme">Reactronic</a> is
             a JavaScript library that
             provides <a href="https://blog.nezaboodka.com/post/2019/593-modern-database-should-natively-support-transactionally-reactive-programming">transactionally reactive state management</a> in
