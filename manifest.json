@@ -1,0 +1,6 @@
+{
+  "short_name": "Reactronic Live Demo",
+  "name": "Reactronic Live Demo",
+  "start_url": "./index.html",
+  "display": "standalone"
+}
