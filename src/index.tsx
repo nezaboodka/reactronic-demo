@@ -10,4 +10,5 @@ const app = Transaction.run(() => new App());
 const root = document.getElementById('root');
 ReactDOM.render(<Main app={app}/>, root);
 
-require('./registerServiceWorker').default();
+if (process.env.NODE_ENV !== 'production')
+  require('./registerServiceWorker').default();
