@@ -36,12 +36,14 @@ export const demo = css`
     min-width: 1em;
     text-align: center;
     white-space: nowrap;
+    animation: shake 3s infinite linear;
   }
 
   button:disabled {
     color: rgba(255, 255, 255, 0.5);
     background-color: silver;
     box-shadow: none;
+    animation: none;
   }
 
   button:hover {
@@ -55,6 +57,15 @@ export const demo = css`
     to {
       transform: rotate(359deg);
     }
+  }
+
+  @keyframes shake {
+    from { transform: scale3d(1, 1, 1); }
+    5%, 10% { transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -2deg); }
+    15%, 25%, 35%, 45% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 2deg); }
+    20%, 30%, 40% { transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -2deg); }
+    50% { transform: scale3d(1, 1, 1); }
+    to { transform: scale3d(1, 1, 1); }
   }
 
   img {
