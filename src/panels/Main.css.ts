@@ -86,6 +86,7 @@ export const body = css`
     box-shadow: 0.02em 0.02em 0.5em 0px rgba(0, 0, 0, 0.5);
     max-width: 100%;
     overflow: auto;
+    max-width: 100%;
     /* border: 1px solid rgba(255, 255, 255, 0.4); */
   }
 
@@ -109,12 +110,14 @@ export const modelCode = css`
   grid-row: 2 / span 2;
   grid-column: 1;
   z-index: 100;
+  overflow: hidden;
 `;
 
 export const renderCode = css`
   grid-row: 4 / span 2;
   grid-column: 1;
   margin-top: 1em;
+  overflow: hidden;
 `;
 
 export const demo = css`

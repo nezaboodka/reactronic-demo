@@ -87,6 +87,7 @@ export const demo = css`
     grid-column: 1 / span 3;
     position: relative;
     font-size: 75%;
+    max-width: 100%;
     min-height: 6em;
     padding: 0.1em 8px;
     border: 0.5px solid rgba(0, 0, 0, 0.1);
