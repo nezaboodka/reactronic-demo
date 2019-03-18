@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Transaction, cache, Reactronic } from 'reactronic';
+import { Transaction, cache, Renew, Reactronic } from 'reactronic';
 
 export class AutoRenderComponent<P extends { tran?: Transaction }, S = never, SS = never> extends React.Component<P, S, SS> {
-  @cache(0)
+  @cache(Renew.Immediately)
   trigger(): void {
     // This method is automatically and immediately re-executed
     // when cached value of this.render is invalidated.

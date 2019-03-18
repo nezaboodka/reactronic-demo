@@ -5480,10 +5480,10 @@ react@16.8.4:
     prop-types "^15.6.2"
     scheduler "^0.13.4"
 
-reactronic@0.8.23:
-  version "0.8.23"
-  resolved "https://registry.yarnpkg.com/reactronic/-/reactronic-0.8.23.tgz#b09ce6cabfa4b84c68c6f0ce32c5139962e7d6ef"
-  integrity sha512-J6iTscnfKmz22NxxaLCQaHEzLFYsnekaWbLFefpZsisS4JhFOBjq6eNtcJ+KeuBP5wOSJ0gOdB71yTvhvlWWRg==
+reactronic@0.8.25:
+  version "0.8.25"
+  resolved "https://registry.yarnpkg.com/reactronic/-/reactronic-0.8.25.tgz#9ee844b8843d69ad28ef8c3a1a7d3330c2b39580"
+  integrity sha512-jzTlS3GXaCAmUgMVzbAMiQkhfv0hHtn4up7FEl9mtRvb4GujAN5I0EKSWReEmVuYcBsfX5quno0Y9Aww0iUGJg==
 
 read-pkg-up@^3.0.0:
   version "3.0.0"
