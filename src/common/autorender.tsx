@@ -31,7 +31,7 @@ class Jsx {
 
 function createJsx(): Jsx {
   let hint = Debug.verbosity >= 1 ? getComponentName() : undefined;
-  return Transaction.run<Jsx>(() => Reactronic.setHint(new Jsx(), hint));
+  return Transaction.run<Jsx>(() => Reactronic.named(new Jsx(), hint));
 }
 
 function unmountEffect(jsx: Jsx): React.EffectCallback {

@@ -53,7 +53,8 @@ export function LiveCode(p: {app: App, tran?: Transaction}): JSX.Element {
 React.<em>render</em>({"<"}<u>AppView</u> app={"{"}application{"}"}/>)<br/>
 
 </pre>
-</div>);
+</div>
+    );
   });
 }
 

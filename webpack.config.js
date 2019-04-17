@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
-var StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
   mode: "development", // "production" | "development" | "none"
@@ -62,10 +61,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html'
-    }),
-    new StyleLintPlugin({
-      context: 'src',
-      files: ['**/*.css'],
     })
   ]
 };
