@@ -12,6 +12,17 @@ module.exports = {
     path: path.resolve(__dirname, './docs'),
     filename: '[name].js'
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  },
   watchOptions: {
     ignored: /node_modules/
   },

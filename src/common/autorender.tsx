@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Transaction, stateful, cache, Renew, Reactronic, Debug, transaction } from 'reactronic';
+import { Transaction, stateful, cache, Renew, ReactiveCache, Debug, transaction } from 'reactronic';
 
 export function autorender(render: (revision: number) => JSX.Element, tran?: Transaction): JSX.Element {
   const [jsx] = React.useState(() => tran ? tran.view(createJsx) : createJsx());
@@ -24,14 +24,14 @@ class Jsx {
 
   @cache(Renew.Immediately)
   trigger(nextRevision: number, refresh: (nextRevision: number) => void): void {
-    if (this.jsx.reactronic.isInvalidated)
+    if (this.jsx.rcache.isInvalidated)
       refresh(nextRevision);
   }
 }
 
 function createJsx(): Jsx {
   let hint = Debug.verbosity >= 1 ? getComponentName() : undefined;
-  return Transaction.run<Jsx>(() => Reactronic.named(new Jsx(), hint));
+  return Transaction.run<Jsx>(() => ReactiveCache.named(new Jsx(), hint));
 }
 
 function unmountEffect(jsx: Jsx): React.EffectCallback {
@@ -39,7 +39,7 @@ function unmountEffect(jsx: Jsx): React.EffectCallback {
     // did mount
     return () => {
       // will unmount
-      Reactronic.unmount(jsx);
+      ReactiveCache.unmount(jsx);
     };
   };
 }

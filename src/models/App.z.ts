@@ -27,7 +27,7 @@ export class App {
   }
 
   private async bp(id: string, ms: number): Promise<void> {
-    Transaction.runAs("breakpoint", true, () => this.debug = id);
+    Transaction.runAs("breakpoint", true, 0, () => this.debug = id);
     await sleep(ms);
   }
 }
