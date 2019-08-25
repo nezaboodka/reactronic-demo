@@ -1,4 +1,4 @@
-import { stateful, transaction, monitor, sleep, Transaction } from 'reactronic';
+import { stateful, transaction, monitor, sleep, Transaction, Dispart } from 'reactronic';
 import { appMon, pretty } from './App';
 export { appMon } from './App';
 import fetch from 'node-fetch';
@@ -27,7 +27,7 @@ export class App {
   }
 
   private async bp(id: string, ms: number): Promise<void> {
-    Transaction.runAs("breakpoint", true, 0, () => this.debug = id);
+    Transaction.runAs("breakpoint", Dispart.FromParent, 0, () => this.debug = id);
     await sleep(ms);
   }
 }

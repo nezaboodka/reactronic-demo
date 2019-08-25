@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Transaction, stateful, cache, Renew, ReactiveCache, Debug, transaction } from 'reactronic';
+import { Transaction, stateful, transaction, cache, Renew, Dispart, ReactiveCache, Debug } from 'reactronic';
 
-export function autorender(render: (revision: number) => JSX.Element, tran?: Transaction): JSX.Element {
-  const [jsx] = React.useState(() => tran ? tran.view(createJsx) : createJsx());
+export function autorender(render: (revision: number) => JSX.Element, tracing: number = 0, tran?: Transaction): JSX.Element {
+  const [jsx] = React.useState(() => tran ? tran.view(createJsx, tracing) : createJsx(tracing));
   const [revision, refresh] = React.useState(0);
   React.useEffect(unmountEffect(jsx), []);
   return tran ? tran.view(() => jsx.render(revision, render, refresh)) : jsx.render(revision, render, refresh);
@@ -11,8 +11,8 @@ export function autorender(render: (revision: number) => JSX.Element, tran?: Tra
 @stateful
 class Jsx {
   @transaction
-  render(revision: number, render: (revision: number) => JSX.Element, refresh: (nextRevision: number) => void): JSX.Element {
-    let jsx: JSX.Element = this.jsx(revision, render);
+  render(revision: number, doRender: (revision: number) => JSX.Element, refresh: (nextRevision: number) => void): JSX.Element {
+    let jsx: JSX.Element = this.jsx(revision, doRender);
     this.trigger(revision + 1, refresh);
     return jsx;
   }
@@ -29,9 +29,19 @@ class Jsx {
   }
 }
 
-function createJsx(): Jsx {
-  let hint = Debug.verbosity >= 1 ? getComponentName() : undefined;
-  return Transaction.run<Jsx>(() => ReactiveCache.named(new Jsx(), hint));
+function createJsx(tracing: number): Jsx {
+  let dbg = tracing !== 0 || Debug.verbosity >= 2;
+  let hint = dbg ? getComponentName() : undefined;
+  return Transaction.runAs<Jsx>(dbg ? `${hint}` : "new-jsx", Dispart.Default, 0, () => {
+    let jsx = new Jsx();
+    if (dbg) {
+      jsx = ReactiveCache.named(jsx, hint);
+      jsx.render.rcache.configure({tracing});
+      jsx.jsx.rcache.configure({tracing});
+      jsx.trigger.rcache.configure({tracing});
+    }
+    return jsx;
+  });
 }
 
 function unmountEffect(jsx: Jsx): React.EffectCallback {
@@ -45,10 +55,11 @@ function unmountEffect(jsx: Jsx): React.EffectCallback {
 }
 
 function getComponentName(): string | undefined {
-  let up = 1;
   let error = new Error();
   let stack = error.stack || "";
-  let result: string = stack.split("\n")[up + 6] || "";
+  let lines = stack.split("\n");
+  let i = lines.findIndex(x => x.indexOf(".autorender") >= 0) || 6;
+  let result: string = lines[i + 1] || "";
   result = (result.match(/^\s*at\s*(\S+)/) || [])[1];
-  return result;
+  return `<${result}>`;
 }
