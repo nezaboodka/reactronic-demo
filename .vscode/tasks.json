@@ -24,9 +24,9 @@
       }
     },
     {
-      "label": "webpack",
+      "label": "publish",
       "type": "shell",
-      "command": "npm run webpack",
+      "command": "npm run publish",
       "isBackground": true,
       "group": "build",
       "presentation": {
