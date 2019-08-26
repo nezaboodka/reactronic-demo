@@ -40,6 +40,7 @@
     "no-implicit-dependencies": false,
     "jsx-no-string-ref": false,
     "jsx-no-multiline-js": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "no-bitwise": false
   }
 }

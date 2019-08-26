@@ -12,10 +12,7 @@
       "problemMatcher": [
         "$tsc-watch"
       ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
+      "group": "build",
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -36,7 +33,6 @@
         "panel": "shared"
       },
       "problemMatcher": [
-        "$awesometsc", "$awesomets-lint"
       ]
     }
   ]

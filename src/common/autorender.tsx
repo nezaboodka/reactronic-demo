@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Transaction, stateful, transaction, cache, Renew, Dispart, ReactiveCache, Debug } from 'reactronic';
+import { Transaction, stateful, transaction, cache, Renew, ApartFrom, ReactiveCache, Debug } from 'reactronic';
 
 export function autorender(render: (revision: number) => JSX.Element, tracing: number = 0, tran?: Transaction): JSX.Element {
   const [jsx] = React.useState(() => tran ? tran.view(createJsx, tracing) : createJsx(tracing));
@@ -32,7 +32,7 @@ class Jsx {
 function createJsx(tracing: number): Jsx {
   let dbg = tracing !== 0 || Debug.verbosity >= 2;
   let hint = dbg ? getComponentName() : undefined;
-  return Transaction.runAs<Jsx>(dbg ? `${hint}` : "new-jsx", Dispart.Default, 0, () => {
+  return Transaction.runAs<Jsx>(dbg ? `${hint}` : "new-jsx", ApartFrom.Reaction, 0, () => {
     let jsx = new Jsx();
     if (dbg) {
       jsx = ReactiveCache.named(jsx, hint);
