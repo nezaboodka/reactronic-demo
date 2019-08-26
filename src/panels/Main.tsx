@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Transaction, Operation } from 'reactronic';
-import { autorender } from '../common/autorender';
+import { reactiveRender } from '../common/reactivity';
 import { App, appMon } from '../models/App.z';
 import { LiveCode } from '../components/LiveCode';
 import { LiveState } from '../components/LiveState';
@@ -8,7 +8,7 @@ import { Demo } from '../components/Demo';
 import * as css from './Main.css';
 
 export function Main(p: {tran?: Transaction, app: App}): JSX.Element {
-  return autorender(() => {
+  return reactiveRender(() => {
     let ops: Operation[] = Array.from(appMon.operations.values());
     let tran: Transaction | undefined = ops.length > 0 ? ops[0].tran : undefined;
     return (

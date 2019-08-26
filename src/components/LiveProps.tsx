@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Transaction } from 'reactronic';
-import { autorender } from '../common/autorender';
+import { reactiveRender } from '../common/reactivity';
 import * as css from './LiveCode.css';
 
 export function LiveProps(p: {object: any, except: string[], margin?: number, blink?: boolean, tran?: Transaction}): JSX.Element {
-  return autorender(() => {
+  return reactiveRender(() => {
     let items: string[] = Object.getOwnPropertyNames(p.object);
     items = items.filter(name => p.except.indexOf(name) < 0);
     return (
@@ -16,7 +16,7 @@ export function LiveProps(p: {object: any, except: string[], margin?: number, bl
 }
 
 export function LiveProp(p: {object: any, prop: PropertyKey, multiline?: boolean, blink?: boolean, tran?: Transaction}): JSX.Element {
-  return autorender(revision => {
+  return reactiveRender(revision => {
     let v = p.object[p.prop];
     let value = valueToString(v, p.multiline);
     let cls = css.normal;

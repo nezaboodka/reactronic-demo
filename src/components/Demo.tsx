@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { autorender } from '../common/autorender';
+import { reactiveRender } from '../common/reactivity';
 import { App, appMon } from '../models/App.z';
 import { LiveProp } from '../components/LiveProps';
 import * as css from './Demo.css';
 
 export function Demo(p: {app: App}): JSX.Element {
-  return autorender(revision => {
+  return reactiveRender(revision => {
     return (
       <div className={css.demo}>
         <input onChange={e => p.app.setUrl(e.target.value)}

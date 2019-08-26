@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Operation } from 'reactronic';
-import { autorender } from '../common/autorender';
+import { reactiveRender } from '../common/reactivity';
 import { App, appMon } from '../models/App.z';
 import { LiveProps } from '../components/LiveProps';
 import * as css from './LiveCode.css';
 import * as tsx from '../common/tsx.css';
 
 export function LiveState(p: {app: App}): JSX.Element {
-  return autorender(() => {
+  return reactiveRender(() => {
     const except = ["debug", "fetch"];
     let ops: Operation[] = Array.from(appMon.operations.values());
     return (

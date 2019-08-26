@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Transaction, stateful, transaction, cache, Renew, ApartFrom, ReactiveCache, Debug } from 'reactronic';
 
-export function autorender(render: (revision: number) => JSX.Element, tracing: number = 0, tran?: Transaction): JSX.Element {
+export function reactiveRender(render: (revision: number) => JSX.Element, tracing: number = 0, tran?: Transaction): JSX.Element {
   const [jsx] = React.useState(() => tran ? tran.view(createJsx, tracing) : createJsx(tracing));
   const [revision, refresh] = React.useState(0);
   React.useEffect(unmountEffect(jsx), []);

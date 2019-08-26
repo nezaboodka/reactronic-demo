@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Transaction } from 'reactronic';
-import { autorender } from '../common/autorender';
+import { reactiveRender } from '../common/reactivity';
 import { App, appMon } from '../models/App.z';
 import * as css from './LiveCode.css';
 import * as tsx from '../common/tsx.css';
 
 export function LiveCode(p: {app: App, tran?: Transaction}): JSX.Element {
-  return autorender(() => {
+  return reactiveRender(() => {
     const bp = p.app.debug;
     return (
       <div>
