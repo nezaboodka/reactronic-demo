@@ -21,7 +21,7 @@ export class App {
   }
 }
 
-export const appMon = Transaction.run(() => new Monitor("fetching", true));
+export const appMon = Transaction.run(() => new Monitor(true));
 
 export function pretty(type: string | null, content: string, timestamp: Date): string {
   return type && type.indexOf("application/json") === 0 ? content.replace(/,/g, ",\n") : content;

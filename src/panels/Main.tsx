@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Transaction, Operation } from 'reactronic';
+import { Transaction, Worker } from 'reactronic';
 import { reactiveRender } from '../common/reactivity';
 import { App, appMon } from '../models/App.z';
 import { LiveCode } from '../components/LiveCode';
@@ -9,7 +9,7 @@ import * as css from './Main.css';
 
 export function Main(p: {tran?: Transaction, app: App}): JSX.Element {
   return reactiveRender(() => {
-    let ops: Operation[] = Array.from(appMon.operations.values());
+    let ops: Worker[] = Array.from(appMon.workers.values());
     let tran: Transaction | undefined = ops.length > 0 ? ops[0].tran : undefined;
     return (
       <div className={css.app}>

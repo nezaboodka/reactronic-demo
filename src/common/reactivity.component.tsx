@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Transaction, cache, Renew, ReactiveCache } from 'reactronic';
+import { Transaction, cache, behavior, cacheof, Renew, Cache } from 'reactronic';
 
 export class AutoRenderComponent<P extends { tran?: Transaction }, S = never, SS = never> extends React.Component<P, S, SS> {
-  @cache(Renew.Immediately)
+  @cache @behavior(Renew.Immediately)
   trigger(): void {
     // This method is automatically and immediately re-executed
     // when cached value of this.render is invalidated.
-    if (this.render.rcache.isInvalidated)
+    if (cacheof(this.render).isOutdated)
       this.setState({}); // enqueue re-rendering
   }
 
@@ -21,12 +21,12 @@ export class AutoRenderComponent<P extends { tran?: Transaction }, S = never, SS
   shouldComponentUpdate(nextProps: Readonly<P>, nextState: Readonly<S>, nextContext: any): boolean {
     // Update component either if this.render is invalidated
     // or if props are different from the current ones.
-    let rt = this.render.rcache;
-    return rt.isInvalidated || rt.invalidate(diff(this.props, nextProps));
+    let rt = cacheof(this.render);
+    return rt.isOutdated || rt.markOutdated(diff(this.props, nextProps));
   }
 
   componentWillUnmount(): void {
-    ReactiveCache.unmount(this); // cleanup
+    Cache.unmount(this); // cleanup
     if (super.componentWillUnmount)
       super.componentWillUnmount();
   }

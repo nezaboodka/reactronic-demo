@@ -12,7 +12,7 @@ export function LiveProps(p: {object: any, except: string[], margin?: number, bl
        {items.map((prop, index) => <div key={prop}>&nbsp;{" ".repeat(p.margin || 0)}{prop}: <i>'<LiveProp object={p.object} prop={prop} blink={p.blink} tran={p.tran}/>'</i>,</div>)}
       </div>
     );
-  }, 0, p.tran);
+  }, undefined, p.tran);
 }
 
 export function LiveProp(p: {object: any, prop: PropertyKey, multiline?: boolean, blink?: boolean, tran?: Transaction}): JSX.Element {
@@ -23,7 +23,7 @@ export function LiveProp(p: {object: any, prop: PropertyKey, multiline?: boolean
     if (p.blink)
       cls = (revision % 2) ? css.blink1 : css.blink2;
     return <span className={cls}>{value}</span>;
-  }, 0, p.tran);
+  }, undefined, p.tran);
 }
 
 function valueToString(v: any, multiline?: boolean): string {
