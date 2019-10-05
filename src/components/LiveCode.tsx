@@ -1,3 +1,8 @@
+// The below copyright notice and the license permission notice
+// shall be included in all copies or substantial portions.
+// Copyright (C) 2017-2019 Yury Chetyrko <ychetyrko@gmail.com>
+// License: https://raw.githubusercontent.com/nezaboodka/reactronic/master/LICENSE
+
 import * as React from 'react';
 import { Transaction } from 'reactronic';
 import { reactiveRender } from '../common/reactivity';
@@ -19,7 +24,7 @@ export function LiveCode(p: {app: App, tran?: Transaction}): JSX.Element {
 &nbsp; data: <u>string</u> = <i>'Please, press FETCH...'</i>;<br/>
 &nbsp; fetched: <u>Date</u> = <b>new</b> <u>Date</u>(0);<br/>
 <br/>
-<div style={appMon.isIdle ? {} : {backgroundColor: "rgba(255, 255, 255, 0.1)"}}>
+<div style={appMon.busy ? {backgroundColor: "rgba(255, 255, 255, 0.1)"} : {}}>
 &nbsp; <strong>@transaction</strong> <strong>@monitor</strong>(appMon)<br/>
 &nbsp; <b>async</b> <span className={cls("fetch.0", bp)}><em>fetch</em>()</span>: <u>Promise{"<"}void{">"}</u> {"{"}<br/>
 &nbsp;&nbsp;&nbsp; <span className={cls("fetch.1", bp)}><b>let</b> r = <b>await</b> http.<em>fetch</em>(<b>this</b>.url);</span><br/>

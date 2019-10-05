@@ -1,3 +1,8 @@
+// The below copyright notice and the license permission notice
+// shall be included in all copies or substantial portions.
+// Copyright (C) 2017-2019 Yury Chetyrko <ychetyrko@gmail.com>
+// License: https://raw.githubusercontent.com/nezaboodka/reactronic/master/LICENSE
+
 import * as React from 'react';
 import { Transaction } from 'reactronic';
 import { reactiveRender } from '../common/reactivity';
@@ -16,12 +21,12 @@ export function LiveProps(p: {object: any, except: string[], margin?: number, bl
 }
 
 export function LiveProp(p: {object: any, prop: PropertyKey, multiline?: boolean, blink?: boolean, tran?: Transaction}): JSX.Element {
-  return reactiveRender(revision => {
+  return reactiveRender((counter: number) => {
     let v = p.object[p.prop];
     let value = valueToString(v, p.multiline);
     let cls = css.normal;
     if (p.blink)
-      cls = (revision % 2) ? css.blink1 : css.blink2;
+      cls = (counter % 2) ? css.blink1 : css.blink2;
     return <span className={cls}>{value}</span>;
   }, undefined, p.tran);
 }

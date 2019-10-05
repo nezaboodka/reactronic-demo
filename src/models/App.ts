@@ -1,8 +1,12 @@
-import { stateful, transaction, monitor, Monitor, Transaction } from 'reactronic';
+// The below copyright notice and the license permission notice
+// shall be included in all copies or substantial portions.
+// Copyright (C) 2017-2019 Yury Chetyrko <ychetyrko@gmail.com>
+// License: https://raw.githubusercontent.com/nezaboodka/reactronic/master/LICENSE
+
+import { Stateful, transaction, monitor, Monitor } from 'reactronic';
 import fetch from 'node-fetch';
 
-@stateful
-export class App {
+export class App extends Stateful {
   url: string = "https://uinames.com/api/";
   data: string = "Please, press FETCH button\nto get content from the given URL\nand you will see what is going on\nunder the hood.";
   fetched: Date = new Date(0);
@@ -21,7 +25,7 @@ export class App {
   }
 }
 
-export const appMon = Transaction.run(() => new Monitor(true));
+export const appMon = Monitor.create("appMon");
 
 export function pretty(type: string | null, content: string, timestamp: Date): string {
   return type && type.indexOf("application/json") === 0 ? content.replace(/,/g, ",\n") : content;

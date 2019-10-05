@@ -1,10 +1,14 @@
-import { stateful, transaction, monitor, sleep, Transaction, SeparateFrom } from 'reactronic';
+// The below copyright notice and the license permission notice
+// shall be included in all copies or substantial portions.
+// Copyright (C) 2017-2019 Yury Chetyrko <ychetyrko@gmail.com>
+// License: https://raw.githubusercontent.com/nezaboodka/reactronic/master/LICENSE
+
+import { Stateful, Transaction, transaction, monitor, sleep } from 'reactronic';
 import { appMon, pretty } from './App';
 export { appMon } from './App';
 import fetch from 'node-fetch';
 
-@stateful
-export class App {
+export class App extends Stateful {
   url: string = "https://uinames.com/api/";
   data: string = "Please, press FETCH button\nto get content from the given URL\nand you will see what is going on\nunder the hood.";
   fetched: Date = new Date(0);
@@ -27,7 +31,7 @@ export class App {
   }
 
   private async bp(id: string, ms: number): Promise<void> {
-    Transaction.runAs("breakpoint", SeparateFrom.Reaction | SeparateFrom.Parent, undefined, () => this.debug = id);
+    Transaction.runAs("breakpoint", true, false, undefined, undefined, () => this.debug = id);
     await sleep(ms);
   }
 }
