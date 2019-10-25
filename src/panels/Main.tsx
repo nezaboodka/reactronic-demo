@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { Transaction, Worker } from 'reactronic';
-import { reactiveRender } from '../common/reactivity';
+import { Action, Worker } from 'reactronic';
+import { reactive } from 'reactronic-toolkit-react';
 import { App, appMon } from '../models/App.z';
 import { LiveCode } from '../components/LiveCode';
 import { LiveState } from '../components/LiveState';
 import { Demo } from '../components/Demo';
 import * as css from './Main.css';
 
-export function Main(p: {tran?: Transaction, app: App}): JSX.Element {
-  return reactiveRender(() => {
+export function Main(p: {app: App, action?: Action}): JSX.Element {
+  return reactive(() => {
     let ops: Worker[] = Array.from(appMon.workers.values());
-    let tran: Transaction | undefined = ops.length > 0 ? ops[0].tran : undefined;
+    let action: Action | undefined = ops.length > 0 ? ops[0] as Action : undefined;
     return (
       <div className={css.app}>
         <div className={css.body}>
@@ -37,7 +37,7 @@ export function Main(p: {tran?: Transaction, app: App}): JSX.Element {
             <LiveState app={p.app}/>
           </div>
           <div className={css.modelCode}>
-            <LiveCode app={p.app} tran={tran}/>
+            <LiveCode app={p.app} action={action}/>
           </div>
         </div>
       </div>

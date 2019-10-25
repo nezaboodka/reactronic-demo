@@ -3,15 +3,15 @@
 // Copyright (C) 2017-2019 Yury Chetyrko <ychetyrko@gmail.com>
 // License: https://raw.githubusercontent.com/nezaboodka/reactronic/master/LICENSE
 
-import { Stateful, transaction, monitor, Monitor } from 'reactronic';
+import { State, action, monitor, Monitor } from 'reactronic';
 import fetch from 'node-fetch';
 
-export class App extends Stateful {
+export class App extends State {
   url: string = "https://uinames.com/api/";
   data: string = "Please, press FETCH button\nto get content from the given URL\nand you will see what is going on\nunder the hood.";
   fetched: Date = new Date(0);
 
-  @transaction @monitor(appMon)
+  @action @monitor(appMon)
   async fetch(): Promise<void> {
     let t = new Date();
     let r = await fetch(this.url);
@@ -19,7 +19,7 @@ export class App extends Stateful {
     this.fetched = t;
   }
 
-  @transaction
+  @action
   setUrl(value: string): void {
     this.url = value;
   }

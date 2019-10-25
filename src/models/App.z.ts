@@ -3,18 +3,18 @@
 // Copyright (C) 2017-2019 Yury Chetyrko <ychetyrko@gmail.com>
 // License: https://raw.githubusercontent.com/nezaboodka/reactronic/master/LICENSE
 
-import { Stateful, Transaction, transaction, monitor, sleep } from 'reactronic';
+import { State, Action, action, monitor, sleep } from 'reactronic';
 import { appMon, pretty } from './App';
 export { appMon } from './App';
 import fetch from 'node-fetch';
 
-export class App extends Stateful {
+export class App extends State {
   url: string = "https://uinames.com/api/";
   data: string = "Please, press FETCH button\nto get content from the given URL\nand you will see what is going on\nunder the hood.";
   fetched: Date = new Date(0);
   debug: string = "";
 
-  @transaction @monitor(appMon)
+  @action @monitor(appMon)
   async fetch(): Promise<void> {
     (window as any).gtag('event', 'fetch');
     await this.bp("fetch.0", 0);          let t = new Date();
@@ -25,13 +25,13 @@ export class App extends Stateful {
     await this.bp("", 0);
   }
 
-  @transaction
+  @action
   setUrl(value: string): void {
     this.url = value;
   }
 
   private async bp(id: string, ms: number): Promise<void> {
-    Transaction.runAs("breakpoint", true, false, undefined, undefined, () => this.debug = id);
+    Action.runAs("breakpoint", true, undefined, undefined, () => this.debug = id);
     await sleep(ms);
   }
 }

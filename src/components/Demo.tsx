@@ -4,13 +4,13 @@
 // License: https://raw.githubusercontent.com/nezaboodka/reactronic/master/LICENSE
 
 import * as React from 'react';
-import { reactiveRender } from '../common/reactivity';
+import { reactive } from 'reactronic-toolkit-react';
 import { App, appMon } from '../models/App.z';
 import { LiveProp } from '../components/LiveProps';
 import * as css from './Demo.css';
 
 export function Demo(p: {app: App}): JSX.Element {
-  return reactiveRender(revision => {
+  return reactive(() => {
     return (
       <div className={css.demo}>
         <input onChange={e => p.app.setUrl(e.target.value)}

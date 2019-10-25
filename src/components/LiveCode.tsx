@@ -4,14 +4,14 @@
 // License: https://raw.githubusercontent.com/nezaboodka/reactronic/master/LICENSE
 
 import * as React from 'react';
-import { Transaction } from 'reactronic';
-import { reactiveRender } from '../common/reactivity';
+import { Action } from 'reactronic';
+import { reactive } from 'reactronic-toolkit-react';
 import { App, appMon } from '../models/App.z';
 import * as css from './LiveCode.css';
 import * as tsx from '../common/tsx.css';
 
-export function LiveCode(p: {app: App, tran?: Transaction}): JSX.Element {
-  return reactiveRender(() => {
+export function LiveCode(p: {app: App, action?: Action}): JSX.Element {
+  return reactive(() => {
     const bp = p.app.debug;
     return (
       <div>

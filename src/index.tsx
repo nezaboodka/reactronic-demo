@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Main } from './panels/Main';
 import { App } from './models/App.z';
-import { Transaction, Reactronic } from 'reactronic';
+import { Action, Tools as RT } from 'reactronic';
 
-Reactronic.setTrace({
+RT.setTrace({
   silent: false,
   transactions: true,
   methods: true,
@@ -13,7 +13,6 @@ Reactronic.setTrace({
   reads: false,
   writes: false,
   changes: true,
-  subscriptions: false,
   invalidations: true,
   errors: true,
   warnings: true,
@@ -24,7 +23,7 @@ Reactronic.setTrace({
   margin2: 0,
 });
 
-const app = Transaction.run("app", () => new App());
+const app = Action.run("app", () => new App());
 const root = document.getElementById('root');
 ReactDOM.render(<Main app={app}/>, root);
 
