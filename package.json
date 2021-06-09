@@ -18,7 +18,7 @@
     "react-router": "5.0.1",
     "reactronic": "0.9.32",
     "emotion": "10.0.14",
-    "normalize-url": "4.3.0",
+    "normalize-url": "4.5.1",
     "markdown-it": "9.1.0",
     "markdown-it-prism": "2.0.2",
     "prismjs": "1.17.1"
